@@ -1,15 +1,28 @@
+import { useMetamask ,useAddress} from '@thirdweb-dev/react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
+import './index.css'
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <div className="App">
-   Hello
-    </div>
-  )
+
+  const userAddress = useAddress();
+
+  const connectWithMetamask = useMetamask();
+
+  console.log(userAddress);
+
+  if (!userAddress) {
+    return (
+      <div className="landing">
+        <h1>Welcome to NarutoDAO</h1>
+        <button onClick={connectWithMetamask} className="btn-hero">
+          Connect your wallet
+        </button>
+      </div>
+    );
+
+
+}
+
 }
 
 export default App

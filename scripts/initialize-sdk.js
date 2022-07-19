@@ -11,7 +11,18 @@ if(!process.env.ALCHEMY_API_KEY||process.env.ALCHEMY_API_KEY===""){
     process.exit(1);
 }
 
-if(process.env.PRIVAE_API_KEY===""||process.env.PRIVAE_API_KEY===""){
+if(!process.env.PRIVAE_KEY||process.env.PRIVAE_KEY===""){
+    console.log("PRIVAE_KEY is not set");
+    process.exit(1);
+}
+
+if(!process.env.WALLET_ADD||process.env.WALLET_ADD===""){
+    console.log("WALLET_ADDRESS is not set");
+    process.exit(1);
+}
+
+
+const provider = new ethers.providers.JsonRpcProvider(process.env.process.env.ALCHEMY_API_KEY);
 
 
 const sdk = new ThirdwebSDK();

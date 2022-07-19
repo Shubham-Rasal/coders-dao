@@ -9,20 +9,19 @@ function App() {
   const connectWithMetamask = useMetamask();
 
   console.log(userAddress);
-
-  if (!userAddress) {
-    return (
-      <div className="landing">
-        <h1>Welcome to NarutoDAO</h1>
-        <button onClick={connectWithMetamask} className="btn-hero">
-          Connect your wallet
-        </button>
-      </div>
-    );
+  
 
 
-}
-
+  return (
+    <div className="App">
+       {userAddress ? (
+        <h4>Connected as {userAddress}</h4>
+      ) : (
+        <button onClick={connectWithMetamask} className=' bg-green-400 p-2 rounded-md'>Connect Metamask Wallet</button>
+      )}
+  
+    </div>
+  )
 }
 
 export default App

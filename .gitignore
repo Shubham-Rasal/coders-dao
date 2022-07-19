@@ -25,4 +25,4 @@ dist-ssr
 
 
 /deployment-script
-
+*.env

@@ -16,6 +16,7 @@ function App() {
     <div className="App">
        {userAddress ? (
         <h4>Connected as {userAddress}</h4>
+        
       ) : (
         <button onClick={connectWithMetamask} className=' bg-green-400 p-2 rounded-md'>Connect Metamask Wallet</button>
       )}

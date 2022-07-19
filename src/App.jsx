@@ -15,10 +15,10 @@ function App() {
   return (
     <div className="App">
        {userAddress ? (
-        <h4>Connected as {userAddress}</h4>
+        <h4 className='p-5 bg-green-300 m-1 rounded '>Connected as {userAddress}</h4>
         
       ) : (
-        <button onClick={connectWithMetamask} className=' bg-green-400 p-2 rounded-md'>Connect Metamask Wallet</button>
+        <button onClick={connectWithMetamask} className=' bg-green-400  rounded-md p-3'>Connect Metamask Wallet</button>
       )}
   
     </div>

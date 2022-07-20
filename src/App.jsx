@@ -1,5 +1,6 @@
 import { useMetamask, useAddress, useEditionDrop } from '@thirdweb-dev/react'
 import { useState, useEffect } from 'react'
+import Members from './components/Members';
 import './index.css'
 
 function App() {
@@ -78,8 +79,12 @@ function App() {
       <div className="App flex flex-col h-screen align-center">
         <h5 className='p-2 bg-green-300 m-1 rounded '>Connected as {userAddress}</h5>
         <div className="bg-red-400">
-          Welcome to coder's DAO
+          <h3>Welcome to coder's DAO</h3>
+          </div>
+          <div className="members">
+            <Members nft={{hasClaimedNFT,setHasClaimedNFT}}/>
         </div>
+
       </div>
     )
   }

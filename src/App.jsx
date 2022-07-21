@@ -1,7 +1,8 @@
-import { useMetamask, useAddress, useEditionDrop } from '@thirdweb-dev/react'
+import { useMetamask, useAddress, useEditionDrop, useNetwork } from '@thirdweb-dev/react'
 import { useState, useEffect } from 'react'
 import Members from './components/Members';
 import Proposals from './components/Proposals';
+import {ChainId} from '@thirdweb-dev/sdk'
 import './index.css'
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
 
   const userAddress = useAddress();
   const connectWithMetamask = useMetamask();
+  const network =useNetwork()
   const editionDrop = useEditionDrop("0x2f5BA3EcCB87d9ce6F6808661E70f7E5455A6ccb")
 
 
@@ -65,6 +67,19 @@ function App() {
     return (
       <button onClick={connectWithMetamask} className=' bg-green-400  rounded-md p-3'>Connect Metamask Wallet</button>
     )
+  }
+
+
+  if (network?.[0].data.chain.id !== ChainId.Rinkeby) {
+    return (
+      <div className="unsupported-network">
+        <h2>Please connect to Rinkeby</h2>
+        <p>
+          This dapp only works on the Rinkeby network, please switch networks
+          in your connected wallet.
+        </p>
+      </div>
+    );
   }
 
   if (!hasClaimedNFT) {

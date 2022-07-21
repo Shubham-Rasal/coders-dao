@@ -7,6 +7,13 @@ const Proposals = ({ hasClaimedNFT, address }) => {
     const [isVoting, setIsVoting] = useState(false);
     const [proposals, setProposals] = useState([]);
     const [hasVoted, setHasVoted] = useState(false);
+    const [voteColor, setVoteColor] = useState({
+        "0": "hover:bg-red-400",
+        "1": "hover:bg-green-400",
+        "2": "hover:bg-gray-400",
+    })
+
+    const [voteText, setVoteText] = useState("");
 
     useEffect(() => {
         if (!hasClaimedNFT)
@@ -45,28 +52,52 @@ const Proposals = ({ hasClaimedNFT, address }) => {
 
 
 
+    function handleOnVote(e){
+        e.preventDefault();
+        // setVoteText("✅");
+       
+
+        
+
+    }
+
+
     return (
         <div>
             <h1 className='font-bold'>  Proposals</h1>
 
-            <div className="">
-                {proposals.map((proposal) => {
+            <div className="bg-blue-200">
+                {proposals.map((proposal,index) => {
 
                     console.log(proposal);
                     return (
-                        <div className="flex flex-col ">
-                            <div className="flex bg-yellow-300">
+                        <div className="flex flex-col " key={index}>
+                            <div className="flex bg-yellow-200">
 
-                            <strong> Proposer:  </strong>
-                         <div className="font-light ml-3 ">
-                            {proposal.proposer}
-                         </div>
+                                <strong> Proposer:  </strong>
+                                <div className="font-light ml-3 ">
+                                    {proposal.proposer}
+                                </div>
                             </div>
-
-                           
 
                             <div className="des p-3">
                                 {proposal.description}
+                            </div>
+                            <div className="options flex ">
+                                {proposal.votes.map((vote, index) => {
+                                    return (
+                                        <div className={`bg-red-100 m-4 p-2 w-full text-center font-medium rounded-full ${voteColor[vote.type]} vote-btn`} key={index}>
+                                           <button className='w-full rounded-lg ' name={vote.label} onClick={handleOnVote}>
+                                            {vote.label}{voteText}
+
+                                           </button>
+                                            </div>
+                                    )
+                                })
+                                }
+
+
+
                             </div>
                         </div>
                     )
@@ -74,7 +105,17 @@ const Proposals = ({ hasClaimedNFT, address }) => {
 
                 })}
             </div>
+              {proposals.length &&
+            <div className="submit p-2 m-8 flex justify-center">
+                <button disabled={isVoting || hasVoted} className='bg-slate-900 text-gray-50 p-3  rounded-md'>
+                {isVoting
+                  ? "Voting..."
+                  : hasVoted
+                    ? "You Already Voted"
+                    : "Submit Votes"}</button>
+            </div>
 
+                }
 
         </div>
     )

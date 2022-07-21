@@ -69,10 +69,16 @@ const memberList = useMemo(() => {
 
     return (
         <div>
-            <h3>Members</h3>
+            <h2 className='font-bold'>Members</h2><br />
             <div className="flex flex-col">
+            <div  className='flex w-full bg-cyan-600 tx-lg font-bold h-12 justify-between'>
+                            <h2>Address</h2>
+                            <p>Token Amount (in CUT)</p>
+                          
+            </div>
 
             {
+
                 memberList.map(({address, tokenAmount}) => {
                     return (
                         <div key={address} className='flex w-full bg-cyan-300 hover:bg-cyan-500 tx-lg h-12 justify-between'>

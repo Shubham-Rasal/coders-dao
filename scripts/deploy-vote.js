@@ -9,8 +9,8 @@ import sdk from "./initialize-sdk.js";
         const metadata = {
             name: "Let the code rule",
             proposal_token_threshold: 0,
-            voting_period_in_blocks: 10,
-            voting_delay_in_blocks: 1,
+            voting_period_in_blocks: 5000,
+            voting_delay_in_blocks: 0,
             voting_token_address:process.env.TOKEN_ADDRESS,
             voting_quorum_fraction: 0,
         }

@@ -81,9 +81,9 @@ const memberList = useMemo(() => {
 
                 memberList.map(({address, tokenAmount}) => {
                     return (
-                        <div key={address} className='flex w-full bg-cyan-300 hover:bg-cyan-500 tx-lg h-12 justify-between'>
-                            <h5>{shortenAddress(address)}</h5>
-                            <p>{tokenAmount}</p>
+                        <div key={address} className='flex w-full bg-cyan-300 hover:bg-cyan-500 tx-lg h-12 justify-between align-middle'>
+                            <h5 className='pl-4'>{shortenAddress(address)}</h5>
+                            <p className='mr-2'>{tokenAmount}</p>
                           
                         </div>
                     )

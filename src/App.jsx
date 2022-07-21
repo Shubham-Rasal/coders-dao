@@ -1,6 +1,7 @@
 import { useMetamask, useAddress, useEditionDrop } from '@thirdweb-dev/react'
 import { useState, useEffect } from 'react'
 import Members from './components/Members';
+import Proposals from './components/Proposals';
 import './index.css'
 
 function App() {
@@ -68,21 +69,24 @@ function App() {
 
   if (!hasClaimedNFT) {
     return (<div className=" h-3/5 flex justify-center items-center bg-slate-300">
-        <h5 className='p-2 bg-green-300 m-1 rounded '>Connected as {userAddress}</h5>
-           <button className="h-20  bg-blue-700 text-center w-3/6 rounded-full align-middle " disabled={isClaiming} onClick={mintNft}>
+      <h5 className='p-2 bg-green-300 m-1 rounded '>Connected as {userAddress}</h5>
+      <button className="h-20  bg-blue-700 text-center w-3/6 rounded-full align-middle " disabled={isClaiming} onClick={mintNft}>
         {isClaiming ? "Claiming..." : "Mint nft for free 👩‍💻"}
       </button>
     </div>)
   }
   else {
-    return(
+    return (
       <div className="App flex flex-col h-screen align-center">
         <h5 className='p-2 bg-green-300 m-1 rounded '>Connected as {userAddress}</h5>
         <div className="bg-red-400">
           <h3>Welcome to coder's DAO</h3>
-          </div>
-          <div className="members">
-            <Members nft={{hasClaimedNFT,setHasClaimedNFT}}/>
+        </div>
+        <div className="members">
+          <Members nft={{ hasClaimedNFT, setHasClaimedNFT }} />
+        </div>
+        <div className="proposals">
+          <Proposals hasClaimedNFT={hasClaimedNFT} address={userAddress}/>
         </div>
 
       </div>

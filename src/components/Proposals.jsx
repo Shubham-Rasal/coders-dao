@@ -14,6 +14,18 @@ const Proposals = ({ hasClaimedNFT, address }) => {
     })
 
     const [voteText, setVoteText] = useState("");
+  const [votes, setVotes] = useState([])
+
+    const state = {
+        "0":"Active",
+        "1":"Cancelled",
+        "3":"Defeated",
+        "4":"Succceded",       
+
+    }
+
+    Object.freeze(state);
+    console.log(state[0]);
 
     useEffect(() => {
         if (!hasClaimedNFT)
@@ -52,13 +64,19 @@ const Proposals = ({ hasClaimedNFT, address }) => {
 
 
 
-    function handleOnVote(e){
-        e.preventDefault();
-        // setVoteText("✅");
-       
-
-        
-
+    function handleOnVote(vote,proposal){
+        // vote.preventDefault();
+        const id= proposal.proposalId;
+        const voteType = vote.type;
+        const voteObj = {
+            proposalId:id,
+            voteType:voteType,
+        }
+        setVotes([...votes,voteObj]);
+        console.log(vote)
+        setVoteText("✅");
+        console.log(votes)
+  
     }
 
 
@@ -82,15 +100,18 @@ const Proposals = ({ hasClaimedNFT, address }) => {
 
                             <div className="des p-3">
                                 {proposal.description}
+                                <div className="bg-red-600 rounded-full flex justify-center">
+                                {state[proposal.state]}
+
+                                </div>
                             </div>
                             <div className="options flex ">
                                 {proposal.votes.map((vote, index) => {
                                     return (
                                         <div className={`bg-red-100 m-4 p-2 w-full text-center font-medium rounded-full ${voteColor[vote.type]} vote-btn`} key={index}>
-                                           <button className='w-full rounded-lg ' name={vote.label} onClick={handleOnVote}>
+                                           <input type="checkbox" className='w-full rounded-lg ' name={vote.label} onClick={()=>handleOnVote(vote,proposal)}/>
                                             {vote.label}{voteText}
-
-                                           </button>
+                                         
                                             </div>
                                     )
                                 })

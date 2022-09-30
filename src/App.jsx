@@ -94,10 +94,10 @@ function App() {
     return (
       <div className="App flex flex-col h-screen align-center">
         <h5 className='p-2 bg-green-300 m-1 rounded '>Connected as {userAddress}</h5>
-        <div className="bg-red-400">
+        <div className="bg-red-400 p-2 m-2 ">
           <h3>Welcome to coder's DAO</h3>
         </div>
-        <div className="members">
+        <div className="members p-2 m-2 bg-teal-500">
           <Members nft={{ hasClaimedNFT, setHasClaimedNFT }} />
         </div>
         <div className="proposals">
